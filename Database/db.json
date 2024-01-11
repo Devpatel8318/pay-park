@@ -1,0 +1,260 @@
+{
+  "items": [
+    {
+      "id": "61",
+      "name": "Shivam Motors",
+      "mail": "shivamctors@gmail.com",
+      "xcoo": "23.23472493830437",
+      "ycoo": "72.64210893830437",
+      "password": "aaa",
+      "price": "200"
+    },
+    {
+      "id": "284",
+      "name": "Rajni Motors",
+      "mail": "rajni@gmail.com",
+      "xcoo": "23.24972493830437",
+      "ycoo": "72.64310893830437",
+      "password": "aaa",
+      "price": "100"
+    },
+    {
+      "id": "285",
+      "name": "dhruuvee",
+      "mail": "dhruvipanchal1210@gmail.com",
+      "Slots": "80",
+      "price": "50",
+      "password": "aaa",
+      "xcoo": "23.050061545891644",
+      "ycoo": "72.62656822333544"
+    },
+    {
+      "id": "286",
+      "name": "rahulmotors",
+      "mail": "rahul@gmail.com",
+      "Slots": "100",
+      "price": "60",
+      "password": "aaa",
+      "xcoo": "23.60278164547459",
+      "ycoo": "72.4029473842253"
+    },
+    {
+      "id": "287",
+      "name": "deep motors",
+      "mail": "deepmaheswari123@gmail.com",
+      "Slots": "75",
+      "price": "70",
+      "password": "aaa",
+      "xcoo": "23.225593383048626",
+      "ycoo": "72.65026092236222"
+    },
+    {
+      "id": "288",
+      "name": "Deepali Motors",
+      "mail": "shahdurageshbhai@gmail.com",
+      "Slots": "124",
+      "price": "130",
+      "password": "aaa",
+      "xcoo": "23.19088182772342",
+      "ycoo": "72.64622497499978"
+    },
+    {
+      "id": "289",
+      "name": "Anchal Motors",
+      "mail": "anchalpatel@gmail.com",
+      "Slots": "56",
+      "price": "1200",
+      "password": "aaa",
+      "xcoo": "23.206208822363784",
+      "ycoo": "72.6224966758442"
+    },
+    {
+      "id": "290",
+      "name": "Social Pilot",
+      "mail": "devpatel@socialpilot.co",
+      "Slots": "120",
+      "price": "22",
+      "password": "socialpilot",
+      "xcoo": "23.00399482009915",
+      "ycoo": "72.5006859177084"
+    }
+  ],
+  "idd": [
+    {
+      "logged": "287",
+      "id": 1
+    }
+  ],
+  "receipt": [
+    {
+      "id": 1,
+      "name": "Dev",
+      "email": "dummy5252acc@gmail.com",
+      "car": "GJ025252",
+      "amount": "22",
+      "pname": "Social Pilot",
+      "slot": 89,
+      "date": {
+        "day": 4,
+        "month": 11,
+        "year": 2023,
+        "hour": 10,
+        "minute": 45
+      }
+    }
+  ],
+  "stock": [
+    {
+      "available": 35,
+      "id": 61,
+      "customer": [
+        "dummy5252acc@gmail.com"
+      ],
+      "name": [
+        "Dharmik"
+      ],
+      "car": [
+        "GJ01DE2456"
+      ],
+      "status": [
+        1
+      ],
+      "slot": [
+        34
+      ],
+      "date": [
+        -1
+      ]
+    },
+    {
+      "available": 37,
+      "id": 284,
+      "customer": [
+        "panchalmaharshi211@gmail.com"
+      ],
+      "name": [
+        "maharshi"
+      ],
+      "car": [
+        "GJ24AB9365"
+      ],
+      "status": [
+        1
+      ],
+      "slot": [
+        14
+      ],
+      "date": [
+        -1
+      ]
+    },
+    {
+      "available": 80,
+      "id": 285,
+      "customer": [],
+      "name": [],
+      "car": [],
+      "status": [],
+      "slot": [],
+      "date": []
+    },
+    {
+      "available": 100,
+      "id": 286,
+      "customer": [],
+      "name": [],
+      "car": [],
+      "status": [],
+      "slot": [],
+      "date": []
+    },
+    {
+      "available": 71,
+      "id": 287,
+      "customer": [
+        "amanmull@gmail.com",
+        "devpatelm8318@gmail.com",
+        "dummy5252acc@gmail.com",
+        "dev_20136@ldrp.ac.in"
+      ],
+      "name": [
+        "aman",
+        "dev",
+        "dsdsd",
+        "yashhh"
+      ],
+      "car": [
+        "GJ3433",
+        "trtfftfffggg",
+        "GJ025252",
+        "GJ025252"
+      ],
+      "status": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "slot": [
+        70,
+        1,
+        64,
+        63
+      ],
+      "date": [
+        {
+          "day": 8,
+          "month": 2,
+          "year": 2023,
+          "hour": 11,
+          "minute": 7
+        },
+        -1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "available": 124,
+      "id": 288,
+      "customer": [],
+      "name": [],
+      "car": [],
+      "status": [],
+      "slot": [],
+      "date": []
+    },
+    {
+      "available": 55,
+      "id": 289,
+      "customer": [
+        "deepmaheshwari@gmail.com"
+      ],
+      "name": [
+        "Deep"
+      ],
+      "car": [
+        "GJ24AB9363"
+      ],
+      "status": [
+        1
+      ],
+      "slot": [
+        18
+      ],
+      "date": [
+        -1
+      ]
+    },
+    {
+      "available": 120,
+      "id": 290,
+      "customer": [],
+      "name": [],
+      "car": [],
+      "status": [],
+      "slot": [],
+      "date": []
+    }
+  ]
+}

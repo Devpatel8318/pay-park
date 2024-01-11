@@ -1,0 +1,80 @@
+div.containerr * {
+    margin: 0px;
+    padding: 0px;
+}
+html{
+    scroll-behavior: smooth;
+}
+.containerr {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+    margin-bottom: 100px;
+}
+
+.hero {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    width: 75%;
+    /* border: 3px solid black; */
+    min-height: 50%;
+    border-radius: 10px;
+    /* border: 1px solid blue; */
+
+    display: flex;
+    justify-content: center;
+    gap: 14%;
+
+}
+
+.column {
+    /* border: 1px solid green; */
+    width: 20%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 10px;
+    align-content: flex-start;
+    grid-column-gap: 20px;
+
+}
+
+.items {
+    width: 70%;
+    aspect-ratio: 0.8;
+    /* border: 1px solid violet; */
+    /* border-radius: px; */
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(227, 226, 226);
+}
+
+.booked {
+    background-color:cadetblue;
+    transition: transform 150ms ease-in-out;
+    color:white;
+}
+
+.booked:hover {
+    transform: scale(1.5);
+    border-radius: 5px;
+    box-shadow: 2px 2px 20px 13px rgba(0, 0, 0, 0.2);
+}
+
+.pack {
+    background-color:coral;
+    transition: transform 150ms ease-in-out;
+}
+
+.pack:hover {
+    transform: scale(1.5);
+    border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 20px 13px rgba(0, 0, 0, 0.2);
+}

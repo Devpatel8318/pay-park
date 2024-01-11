@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "id": "61",
+      "name": "Shivam Motors",
+      "xcoo": "23.234724",
+      "ycoo": "72.642108"
+    },
+
+    {
+      "id": "284",
+      "name": "Rajni Motors",
+      "xcoo": "23.238724",
+      "ycoo": "72.643108"
+    },
+    {
+      "id": "37",
+      "name": "Radhe Motors",
+      "xcoo": "23.236724",
+      "ycoo": "72.649108"
+    },
+    {
+      "id": "748",
+      "name": "Bhatoo Motors",
+      "xcoo": "23.239724",
+      "ycoo": "72.651108"
+    },
+    {
+      "id": "958",
+      "name": "Dhamo Motors",
+      "xcoo": "23.242724",
+      "ycoo": "72.640108"
+    },
+    {
+      "id": "98",
+      "name": "Vatsal Motors",
+      "xcoo": "23.252724",
+      "ycoo": "72.650108"
+    }
+  ]
+}
