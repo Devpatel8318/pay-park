@@ -1,5 +1,31 @@
-const api = 'http://localhost:6060'
-const liveServerUrl = 'http://127.0.0.1:5501'
+import { api, liveServerUrl } from '../../env.js'
+
+document.getElementById('homeLeft').addEventListener('click', function () {
+    openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/index/index.html`)
+})
+
+document.getElementById('homeRight').addEventListener('click', function () {
+    openNewURLInTheSameWindow(
+        `${liveServerUrl}/src/Pages/register/register.html`
+    )
+})
+
+function fireClickEvent(element) {
+    var evt = new window.MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+    })
+
+    element.dispatchEvent(evt)
+}
+
+function openNewURLInTheSameWindow(targetURL) {
+    var a = document.createElement('a')
+    a.href = targetURL
+    fireClickEvent(a)
+}
+
 window.onload = function () {
     const formEl = document.querySelector('.form1')
     formEl.addEventListener('submit', (event) => {
@@ -57,20 +83,4 @@ window.onload = function () {
                 }
             })
     })
-
-    function fireClickEvent(element) {
-        var evt = new window.MouseEvent('click', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-        })
-
-        element.dispatchEvent(evt)
-    }
-
-    function openNewURLInTheSameWindow(targetURL) {
-        var a = document.createElement('a')
-        a.href = targetURL
-        fireClickEvent(a)
-    }
 }

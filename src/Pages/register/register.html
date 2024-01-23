@@ -21,16 +21,16 @@
     <script type="text/javascript">
         (function () {
             emailjs.init("3cb_fazpEEGKvFjpl")
-        })();
+        })()
+
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/b0211034c9.js" crossorigin="anonymous"></script>
 </head>
 
 
-
 <body>
-    <div class="home" onclick="openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/index/index.html`)">
+    <div class="home" id="home">
         <div>
             <div class="icons">
                 <i class="fa-solid fa-house fa-xl"></i>
@@ -38,7 +38,7 @@
             <h1>Home</h1>
         </div>
     </div>
-    <div class="home2" onclick="openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/login/login.html`)">
+    <div class="home2" id="login">
         <div>
             <div class="icons">
                 <i class="fa-solid fa-right-to-bracket fa-xl"></i>
@@ -184,24 +184,7 @@
             </div>
         </div>
     </form>
-
-    <script>
-        function fireClickEvent(element) {
-            var evt = new window.MouseEvent('click', {
-                view: window,
-                bubbles: true,
-                cancelable: true
-            })
-            element.dispatchEvent(evt)
-        }
-
-        function openNewURLInTheSameWindow(targetURL) {
-            var a = document.createElement('a')
-            a.href = targetURL
-            fireClickEvent(a)
-        }
-    </script>
-    <script src="./register.js"></script>
+    <script type="module" src="./register.js"></script>
 </body>
 
 </html>

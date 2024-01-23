@@ -1,5 +1,13 @@
-const api = 'http://localhost:6060'
-const liveServerUrl = 'http://127.0.0.1:5501'
+import { api, liveServerUrl } from '../../env.js'
+
+document.getElementById('home').addEventListener('click', function () {
+    openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/index/index.html`)
+})
+
+document.getElementById('logout').addEventListener('click', function () {
+    openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/login/login.html`)
+})
+
 document.getElementById('name').innerHTML
 var id
 fetch(`${api}/idd/1`)

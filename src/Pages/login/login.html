@@ -17,20 +17,20 @@
 </head>
 
 <body>
-  <div class="homeLeft" onclick="openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/index/index.html`)">
+  <div class="homeLeft" id="homeLeft">
     <div>
       <div class="iconss">
         <i class="fa-solid fa-house fa-xl"></i>
       </div>
-      <h1 style="font-family: 'Roboto', sans-serif;font-size: 16px;font-weight: 400;height: 24px;">Home</h1>
+      <h1 style="font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 400; height: 24px;">Home</h1>
     </div>
   </div>
-  <div class="homeRight" onclick="openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/register/register.html`)">
+  <div class="homeRight" id="homeRight">
     <div>
       <div class="iconss">
         <i class="fa-sharp fa-solid fa-id-card fa-xl"></i>
       </div>
-      <h1 style="font-family: 'Roboto', sans-serif;font-size: 16px;font-weight: 400;height: 24px;">Register</h1>
+      <h1 style="font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 400; height: 24px;">Register</h1>
     </div>
   </div>
   <div class="session" style="box-shadow: 6px 1px 20px 4px rgb(68 67 67 / 69%);">
@@ -102,22 +102,7 @@
       <input type="submit" class="dev" id="sub" value="Log in">
     </form>
   </div>
-  <script src="./login.js"></script>
-  <script>
-    function fireClickEvent(element) {
-      var evt = new window.MouseEvent('click', {
-        view: window,
-        bubbles: true,
-        cancelable: true
-      })
-      element.dispatchEvent(evt)
-    }
-    function openNewURLInTheSameWindow(targetURL) {
-      var a = document.createElement('a')
-      a.href = targetURL
-      fireClickEvent(a)
-    }
-  </script>
+  <script type="module" src="./login.js"></script>
 </body>
 
 </html>

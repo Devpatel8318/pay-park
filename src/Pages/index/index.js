@@ -1,4 +1,4 @@
-const api = 'http://localhost:6060'
+import { api } from '../../env.js'
 console.log(api)
 const map = L.map('map').setView([23.234724, 72.642108], 16)
 
