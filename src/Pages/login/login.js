@@ -45,7 +45,7 @@ window.onload = function () {
                         }),
                     }).then(function (data) {
                         openNewURLInTheSameWindow(
-                            'http://127.0.0.1:5501/dashboard/dashboard.html'
+                            'http://127.0.0.1:5501/src/Pages/dashboard/dashboard.html'
                         )
                     })
                 } else {

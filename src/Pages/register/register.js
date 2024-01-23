@@ -122,7 +122,9 @@ formEl.addEventListener('submit', (event) => {
             )
         })
 
-    openNewURLInTheSameWindow('http://127.0.0.1:5501/login/login.html')
+    openNewURLInTheSameWindow(
+        'http://127.0.0.1:5501/src/Pages/login/login.html'
+    )
 })
 
 function fireClickEvent(element) {

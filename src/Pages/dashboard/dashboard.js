@@ -137,7 +137,7 @@ fetch(`${api}/idd/1`)
                                                 }),
                                             })
                                             openNewURLInTheSameWindow(
-                                                'http://127.0.0.1:5501/pdf/pdf.html'
+                                                'http://127.0.0.1:5501/src/Pages/pdf/pdf.html'
                                             )
                                         } else {
                                         }
