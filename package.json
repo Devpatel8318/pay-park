@@ -2,8 +2,9 @@
   "name": "jsonmate",
   "version": "1.0.0",
   "main": "script.js",
+  "type": "module",
   "scripts": {
-    "start": "json-server --watch ./Database/db.json"
+    "start": "json-server --watch ./Database/db.json --port 6060"
   },
   "keywords": [],
   "author": "",

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="./dashboard.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,10 +14,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
-  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
 
-  <style>
-    .home {
+    <style>
+        .home {
             position: absolute;
             width: 100px;
             height: 100px;
@@ -28,6 +28,7 @@
             align-items: center;
             font-family: 'Roboto', sans-serif;
         }
+
         .home2 {
             position: absolute;
             width: 100px;
@@ -46,11 +47,11 @@
             text-align: center;
             margin-bottom: 1px;
         }
-  </style>
+    </style>
 </head>
 
 <body>
-    <div class="home text-indigo-400" onclick="openNewURLInTheSameWindow(`http://127.0.0.1:5501/index.html`)">
+    <div class="home text-indigo-400" onclick="openNewURLInTheSameWindow(`http://127.0.0.1:5501/index/index.html`)">
         <div>
             <div class="icons">
                 <i class="fa-solid fa-house fa-xl"></i>
@@ -58,7 +59,7 @@
             <h1>Home</h1>
         </div>
     </div>
-    <div class="home2 text-indigo-400" onclick="openNewURLInTheSameWindow(`http://127.0.0.1:5501/login.html`)">
+    <div class="home2 text-indigo-400" onclick="openNewURLInTheSameWindow(`http://127.0.0.1:5501/login/login.html`)">
         <div>
             <div class="icons">
                 <i class="fa-solid fa-right-from-bracket fa-xl"></i>
@@ -96,59 +97,41 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray" id="people">
-                
+
             </tbody>
         </table>
-       
+
     </div>
     <div>
-        <!-- <h3>Name: <span class="name" id="name"></span> </h3>
-        <h3>id: <span class="id" id="id"></span></h3> -->
-        <!-- <h3>Available slots: <span class="slots" id="slots"></span></h3> -->
-
-        <!-- <br><br><br><br>
-        <div id="people">
-            <button class="relative  inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-indigo-500 rounded-full shadow-md group">
-                <span
-                    class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-indigo-400 group-hover:translate-x-0 ease">
-                    Receipt
-                </span>
-                <span
-                    class="absolute flex items-center justify-center w-full h-full text-indigo-500 transition-all duration-300 transform group-hover:translate-x-full ease">Print</span>
-                <span class="relative invisible">Button Text</span>
-            </button>
-        </div>
-    </div> -->
-    <div class="containerr">
-        <div class="hero">
-            <div class="column" id="col1">
-            </div>
-            <div class="column" id="col2">
-            </div>
-            <div class="column" id="col3">
+        <div class="containerr">
+            <div class="hero">
+                <div class="column" id="col1">
+                </div>
+                <div class="column" id="col2">
+                </div>
+                <div class="column" id="col3">
+                </div>
             </div>
         </div>
-    </div>
-    <script src="dashboard.js"></script>
-    <script>
-        function fireClickEvent(element) {
-            var evt = new window.MouseEvent('click', {
-                view: window,
-                bubbles: true,
-                cancelable: true
-            });
-            element.dispatchEvent(evt);
-        }
+        <script src="./dashboard.js"></script>
+        <script>
+            function fireClickEvent(element) {
+                var evt = new window.MouseEvent('click', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: true
+                })
+                element.dispatchEvent(evt)
+            }
 
-        function openNewURLInTheSameWindow(targetURL) {
-            var a = document.createElement('a');
-            a.href = targetURL;
-            fireClickEvent(a);
-        }
-    </script>
+            function openNewURLInTheSameWindow(targetURL) {
+                var a = document.createElement('a')
+                a.href = targetURL
+                fireClickEvent(a)
+            }
+        </script>
 
 
 </body>
 
 </html>
-

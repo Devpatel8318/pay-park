@@ -6,13 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Page</title>
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="./parking.png">
     <style>
         .home {
             position: absolute;
@@ -57,7 +56,7 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-            background-image: url("./blob-scene-haikei.svg");
+            background-image: url("../assets/blob-scene-haikei.svg");
         }
 
         .map-container-container {
@@ -277,7 +276,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function () {
-            emailjs.init("3cb_fazpEEGKvFjpl");
+            emailjs.init("3cb_fazpEEGKvFjpl")
         })();
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -335,7 +334,7 @@
 
 
 <body>
-    <div class="home" onclick="openNewURLInTheSameWindow(`http://127.0.0.1:5501/index.html`)">
+    <div class="home" onclick="openNewURLInTheSameWindow(`http://127.0.0.1:5501/index/index.html`)">
         <div>
             <div class="icons">
                 <i class="fa-solid fa-house fa-xl"></i>
@@ -343,7 +342,7 @@
             <h1>Home</h1>
         </div>
     </div>
-    <div class="home2" onclick="openNewURLInTheSameWindow(`http://127.0.0.1:5501/login.html`)">
+    <div class="home2" onclick="openNewURLInTheSameWindow(`http://127.0.0.1:5501/login/login.html`)">
         <div>
             <div class="icons">
                 <i class="fa-solid fa-right-to-bracket fa-xl"></i>
@@ -490,16 +489,9 @@
 
 
                     <div class="email-form khokhu no">
-
-
-
                         <button type="submit"
                             class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create
                             an account</button>
-
-
-
-
                         <div class="back" id="three">Back</div>
                     </div>
                 </div>
@@ -515,17 +507,17 @@
                 view: window,
                 bubbles: true,
                 cancelable: true
-            });
-            element.dispatchEvent(evt);
+            })
+            element.dispatchEvent(evt)
         }
 
         function openNewURLInTheSameWindow(targetURL) {
-            var a = document.createElement('a');
-            a.href = targetURL;
-            fireClickEvent(a);
+            var a = document.createElement('a')
+            a.href = targetURL
+            fireClickEvent(a)
         }
     </script>
-    <script src="register.js"></script>
+    <script src="./register.js"></script>
 </body>
 
 </html>
