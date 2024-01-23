@@ -1,5 +1,5 @@
 const api = 'http://localhost:6060'
-
+const liveServerUrl = 'http://127.0.0.1:5501'
 window.onload = function () {
     const formEl = document.querySelector('.form1')
     formEl.addEventListener('submit', (event) => {
@@ -45,7 +45,7 @@ window.onload = function () {
                         }),
                     }).then(function (data) {
                         openNewURLInTheSameWindow(
-                            'http://127.0.0.1:5501/src/Pages/dashboard/dashboard.html'
+                            `${liveServerUrl}/src/Pages/dashboard/dashboard.html`
                         )
                     })
                 } else {

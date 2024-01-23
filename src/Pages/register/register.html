@@ -12,263 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
-    <style>
-        .home {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            z-index: 15;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .home2 {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            z-index: 15;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Roboto', sans-serif;
-            right: 0px;
-            outline: 2px;
-        }
-
-        .icons {
-            text-align: center;
-            margin-bottom: 1px;
-        }
-
-        .map-container {
-            width: 100%;
-            height: 85%;
-            margin: auto;
-
-            /* margin-top: 200px; */
-        }
-
-        body {
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url("../../assets/blob-scene-haikei.svg");
-        }
-
-        .map-container-container {
-            height: 100%;
-            width: 100%;
-            /* padding-top: 20px; */
-            border-radius: 20px;
-        }
-
-        #map {
-            height: 100%;
-            width: 100%;
-            margin: auto;
-            /* border-radius: 20px; */
-        }
-
-        /* #Location {
-
-            display: block;
-            width: 200px;
-            margin: auto;
-            position: absolute;
-            bottom: 70px;
-            left: 50%;
-            transform: translate(-50%, 0%);
-        } */
-
-        .container {
-            width: 100%;
-            height: 98vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero {
-            width: 65%;
-            /* border: 3px solid rgba(27, 38, 164, 0.523); */
-            display: flex;
-            row-gap: 20px;
-            height: 70%;
-            border-radius: 10px;
-            position: relative;
-            left: 140px
-        }
-
-        .left {
-            /* background-color: rgb(232, 134, 134); */
-            width: 45%;
-            border-bottom-left-radius: 5px;
-            border-top-left-radius: 5px;
-            background-image: url("https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
-            background-size: cover;
-        }
-
-        .right {
-            /* background-color: rgb(98, 98, 233); */
-            width: 55%;
-            border-bottom-right-radius: 5px;
-            border-top-right-radius: 5px;
-            background-color: white;
-        }
-
-        header {
-            /* border: 1px solid yellow; */
-            display: flex;
-            justify-content: center;
-            gap: 35px;
-            margin: 10% auto;
-        }
-
-        .logo {
-            width: 15%;
-            /* border: 1px solid green; */
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .logo img {
-            width: 100%;
-        }
-
-
-        .title {
-            /* width: 20%; */
-            /* border: 1px solid white; */
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            margin-right: 50px;
-        }
-
-        .progress {
-            /* border: 1px solid blue; */
-            margin-top: 70px;
-        }
-
-        .frame {
-            /* border: 1px solid red; */
-            height: 60px;
-            margin-top: 25px;
-            margin-bottom: 25px;
-        }
-
-
-        .box {
-            height: 100%;
-            width: 70%;
-            /* border: 1px solid greenyellow; */
-            /* background-color: rgba(112, 243, 243, 0.464); */
-            margin: auto;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .dot {
-            width: 20%;
-            /* background-color: rgba(240, 248, 255, 0.537); */
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .dot::after {
-            content: "";
-            border-left: 3px solid red;
-            height: 100px;
-            position: absolute;
-            bottom: 50%;
-            /* top: 0px; */
-        }
-
-        #unique::after {
-            height: 0px;
-        }
-
-        .circle {
-            background-color: red;
-            height: 50%;
-            aspect-ratio: 1 / 1;
-            border-radius: 100%;
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        .step {
-            width: 40%;
-            /* border: 1px solid blue; */
-            height: 100%;
-            /* background-color: rgba(93, 93, 243, 0.445); */
-            /* display: inline-block; */
-        }
-
-        .active {
-            transform: scale(1.1);
-            border: 12px solid white;
-        }
-
-        .step {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .step p {
-            padding-left: 10px;
-        }
-
-        .no {
-            display: none;
-        }
-
-        .khokhu {
-            height: 100%;
-            width: 100%;
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;
-            position: relative;
-        }
-
-
-
-
-
-        .next {
-            position: absolute;
-            bottom: 5%;
-            right: 10%;
-        }
-
-        .back {
-            position: absolute;
-            bottom: 5%;
-            left: 10%;
-        }
-
-        .next {
-            cursor: pointer
-        }
-
-        .back {
-            cursor: pointer
-        }
-
-        .svgback {
-            transform: rotate(180deg);
-        }
-    </style>
+    <link rel="stylesheet" href="./register.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
         integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="">
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
@@ -280,61 +24,13 @@
         })();
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: { "50": "#fdf4ff", "100": "#fae8ff", "200": "#f5d0fe", "300": "#f0abfc", "400": "#e879f9", "500": "#d946ef", "600": "#c026d3", "700": "#a21caf", "800": "#86198f", "900": "#701a75" }
-                    }
-                },
-                fontFamily: {
-                    'body': [
-                        'Open Sans',
-                        'ui-sans-serif',
-                        'system-ui',
-                        '-apple-system',
-                        'system-ui',
-                        'Segoe UI',
-                        'Roboto',
-                        'Helvetica Neue',
-                        'Arial',
-                        'Noto Sans',
-                        'sans-serif',
-                        'Apple Color Emoji',
-                        'Segoe UI Emoji',
-                        'Segoe UI Symbol',
-                        'Noto Color Emoji'
-                    ],
-                    'sans': [
-                        'Open Sans',
-                        'ui-sans-serif',
-                        'system-ui',
-                        '-apple-system',
-                        'system-ui',
-                        'Segoe UI',
-                        'Roboto',
-                        'Helvetica Neue',
-                        'Arial',
-                        'Noto Sans',
-                        'sans-serif',
-                        'Apple Color Emoji',
-                        'Segoe UI Emoji',
-                        'Segoe UI Symbol',
-                        'Noto Color Emoji'
-                    ]
-                }
-            }
-        }
-    </script>
     <script src="https://kit.fontawesome.com/b0211034c9.js" crossorigin="anonymous"></script>
 </head>
 
 
 
 <body>
-    <div class="home" onclick="openNewURLInTheSameWindow(`http://127.0.0.1:5501/src/Pages/index/index.html`)">
+    <div class="home" onclick="openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/index/index.html`)">
         <div>
             <div class="icons">
                 <i class="fa-solid fa-house fa-xl"></i>
@@ -342,7 +38,7 @@
             <h1>Home</h1>
         </div>
     </div>
-    <div class="home2" onclick="openNewURLInTheSameWindow(`http://127.0.0.1:5501/src/Pages/login/login.html`)">
+    <div class="home2" onclick="openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/login/login.html`)">
         <div>
             <div class="icons">
                 <i class="fa-solid fa-right-to-bracket fa-xl"></i>
@@ -392,16 +88,9 @@
 
                     <!-- Two -->
                     <div class="location-form khokhu no">
-
-
-
-
                         <section class="bg-gray-50 rounded-lg  dark:bg-gray-900" style="height:100%;">
-
-
                             <div class="flex flex-col rounded-lg  items-center justify-center mx-autolg:py-0"
                                 style="height:100%;">
-
                                 <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
                                     style="height: 100%;">
                                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -484,10 +173,7 @@
 
                     </div>
 
-
                     <!-- three -->
-
-
                     <div class="email-form khokhu no">
                         <button type="submit"
                             class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create

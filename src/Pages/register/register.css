@@ -1,0 +1,255 @@
+.home {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    z-index: 15;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.home2 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    z-index: 15;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    right: 0px;
+    outline: 2px;
+}
+
+.icons {
+    text-align: center;
+    margin-bottom: 1px;
+}
+
+.map-container {
+    width: 100%;
+    height: 85%;
+    margin: auto;
+
+    /* margin-top: 200px; */
+}
+
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("../../assets/blob-scene-haikei.svg");
+}
+
+.map-container-container {
+    height: 100%;
+    width: 100%;
+    /* padding-top: 20px; */
+    border-radius: 20px;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    /* border-radius: 20px; */
+}
+
+/* #Location {
+
+    display: block;
+    width: 200px;
+    margin: auto;
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+} */
+
+.container {
+    width: 100%;
+    height: 98vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero {
+    width: 65%;
+    /* border: 3px solid rgba(27, 38, 164, 0.523); */
+    display: flex;
+    row-gap: 20px;
+    height: 70%;
+    border-radius: 10px;
+    position: relative;
+    left: 140px
+}
+
+.left {
+    /* background-color: rgb(232, 134, 134); */
+    width: 45%;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    background-image: url("https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-size: cover;
+}
+
+.right {
+    /* background-color: rgb(98, 98, 233); */
+    width: 55%;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: white;
+}
+
+header {
+    /* border: 1px solid yellow; */
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    margin: 10% auto;
+}
+
+.logo {
+    width: 15%;
+    /* border: 1px solid green; */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.logo img {
+    width: 100%;
+}
+
+
+.title {
+    /* width: 20%; */
+    /* border: 1px solid white; */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 50px;
+}
+
+.progress {
+    /* border: 1px solid blue; */
+    margin-top: 70px;
+}
+
+.frame {
+    /* border: 1px solid red; */
+    height: 60px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+
+.box {
+    height: 100%;
+    width: 70%;
+    /* border: 1px solid greenyellow; */
+    /* background-color: rgba(112, 243, 243, 0.464); */
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.dot {
+    width: 20%;
+    /* background-color: rgba(240, 248, 255, 0.537); */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.dot::after {
+    content: "";
+    border-left: 3px solid red;
+    height: 100px;
+    position: absolute;
+    bottom: 50%;
+    /* top: 0px; */
+}
+
+#unique::after {
+    height: 0px;
+}
+
+.circle {
+    background-color: red;
+    height: 50%;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.step {
+    width: 40%;
+    /* border: 1px solid blue; */
+    height: 100%;
+    /* background-color: rgba(93, 93, 243, 0.445); */
+    /* display: inline-block; */
+}
+
+.active {
+    transform: scale(1.1);
+    border: 12px solid white;
+}
+
+.step {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.step p {
+    padding-left: 10px;
+}
+
+.no {
+    display: none;
+}
+
+.khokhu {
+    height: 100%;
+    width: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    position: relative;
+}
+
+
+
+
+
+.next {
+    position: absolute;
+    bottom: 5%;
+    right: 10%;
+}
+
+.back {
+    position: absolute;
+    bottom: 5%;
+    left: 10%;
+}
+
+.next {
+    cursor: pointer
+}
+
+.back {
+    cursor: pointer
+}
+
+.svgback {
+    transform: rotate(180deg);
+}

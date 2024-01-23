@@ -1,4 +1,5 @@
 const api = 'http://localhost:6060'
+const liveServerUrl = 'http://127.0.0.1:5501'
 document.getElementById('name').innerHTML
 var id
 fetch(`${api}/idd/1`)
@@ -137,7 +138,7 @@ fetch(`${api}/idd/1`)
                                                 }),
                                             })
                                             openNewURLInTheSameWindow(
-                                                'http://127.0.0.1:5501/src/Pages/pdf/pdf.html'
+                                                `${liveServerUrl}/src/Pages/pdf/pdf.html`
                                             )
                                         } else {
                                         }
