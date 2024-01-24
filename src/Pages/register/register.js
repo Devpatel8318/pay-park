@@ -8,6 +8,25 @@ document.getElementById('login').addEventListener('click', function () {
     openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/login/login.html`)
 })
 
+document.getElementById('Location').addEventListener('click', markerSetter)
+document.getElementById('verify').addEventListener('click', sendMail)
+document.getElementById('otpCheck').addEventListener('click', otpChecker)
+
+document.getElementById('one').onclick = function () {
+    document.querySelector('.right .khokhu').classList.add('no')
+    document.querySelector('.khokhu:nth-child(2)').classList.remove('no')
+}
+document.getElementById('two-back').onclick = function () {
+    document.querySelector('.right .khokhu').classList.remove('no')
+    document.querySelector('.khokhu:nth-child(2)').classList.add('no')
+}
+
+function markerSetter() {
+    let marker = L.marker([x, y]).addTo(map)
+    map.closePopup()
+    document.getElementById('Location').remove()
+}
+
 function fireClickEvent(element) {
     var evt = new window.MouseEvent('click', {
         view: window,
@@ -115,13 +134,6 @@ function onMapClick(e) {
 }
 map.on('click', onMapClick)
 
-function markerSetter() {
-    // console.log(x, y);
-    let marker = L.marker([x, y]).addTo(map)
-    map.closePopup()
-    document.getElementById('Location').remove()
-}
-
 document.getElementById('sub').style.display = 'none'
 let otp
 function otpGenerator() {
@@ -130,16 +142,18 @@ function otpGenerator() {
 }
 
 function sendMail() {
-    var params = {
-        name: document.getElementById('name').value,
-        email_id: document.getElementById('mail').value,
-        message: otpGenerator(),
-    }
-    emailjs
-        .send('service_cyxbt0d', 'template_plwjtef', params)
-        .then(function (res) {
-            alert(`Mail sent to ${document.getElementById('mail').value}`)
-        })
+    //Uncomment to send mail
+
+    // var params = {
+    //     name: document.getElementById('name').value,
+    //     email_id: document.getElementById('mail').value,
+    //     message: otpGenerator(),
+    // }
+    // emailjs
+    //     .send('service_cyxbt0d', 'template_plwjtef', params)
+    //     .then(function (res) {
+    //         alert(`Mail sent to ${document.getElementById('mail').value}`)
+    //     })
     document.getElementById('verify').style.display = 'none'
 }
 
@@ -147,77 +161,57 @@ function otpChecker() {
     let k = document.getElementById('otp').value
     if (k == otp) {
         document.getElementById('sub').style.display = ''
-        console.log('Right OTP')
         document.getElementById('otpCheck').style.display = 'none'
     } else {
-        alert('Wrong Otp, Try Again')
+        //remove bottom 3 line to send mail
+        document.getElementById('sub').style.display = ''
+        document.getElementById('otpCheck').style.display = 'none'
+
+        // uncomment bottom line
+        // alert('Wrong Otp, Try Again')
+
+        //ignore
         // document.getElementById("sub").style.display = "";
-        // // console.log("Right OTP");
+        // console.log("Right OTP");
         // document.getElementById("otpCheck").style.display = "none";
     }
 }
-
 const formEl = document.querySelector('.form1')
 
-formEl.addEventListener('submit', (event) => {
+formEl.addEventListener('submit', async (event) => {
     event.preventDefault()
-    fetch(`${api}/items`)
-        .then((res) => res.json())
-        .then((dataa) => {
-            document.getElementById('ID').value =
-                Number(
-                    dataa[Object.keys(dataa)[Object.keys(dataa).length - 1]].id
-                ) + 1
-            console.log(document.getElementById('ID').value)
-            const formData = new FormData(formEl)
-            const data = Object.fromEntries(formData)
-            const dataaa = Object.fromEntries(formData)
-            delete data['otp']
-            console.log(data)
-            data['xcoo'] = x.toString()
-            data['ycoo'] = y.toString()
-            delete data['slots']
 
-            fetch(`${api}/items`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            }).then(
-                fetch(`${api}/stock`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        available: Number(dataaa.Slots),
-                        id: Number(data.id),
-                        customer: [],
-                        name: [],
-                        car: [],
-                        status: [],
-                        slot: [],
-                        date: [],
-                    }),
-                })
-            )
+    try {
+        const { data: itemsData } = await axios.get(`${api}/items`)
+
+        document.getElementById('ID').value =
+            Number(itemsData[Object.keys(itemsData).pop()].id) + 1
+
+        const formData = new FormData(formEl)
+        const newItemData = Object.fromEntries(formData)
+        const available = Number(newItemData?.Slots)
+
+        delete newItemData['otp']
+        delete newItemData['slots']
+        newItemData['xcoo'] = x.toString()
+        newItemData['ycoo'] = y.toString()
+
+        const itemsResponse = await axios.post(`${api}/items`, newItemData)
+
+        const stockResponse = await axios.post(`${api}/stock`, {
+            available,
+            id: Number(newItemData.id),
+            customer: [],
+            name: [],
+            car: [],
+            status: [],
+            slot: [],
+            date: [],
         })
 
-    openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/login/login.html`)
+        console.log(stockResponse.data)
+        // openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/login/login.html`);
+    } catch (error) {
+        console.error(error.message)
+    }
 })
-
-document.getElementById('one').onclick = function () {
-    document.querySelector('.right .khokhu').classList.add('no')
-    document.querySelector('.khokhu:nth-child(2)').classList.remove('no')
-    // document.querySelector(".khokhu:last-child").classList.add("no");
-    // document.getElementById("circle1").classList.remove("active");
-    // document.getElementById("circle2").classList.add("active");
-}
-document.getElementById('two-back').onclick = function () {
-    document.querySelector('.right .khokhu').classList.remove('no')
-    document.querySelector('.khokhu:nth-child(2)').classList.add('no')
-    // document.getElementById("circle1").classList.add("active");
-    // document.getElementById("circle2").classList.remove("active");
-    // document.querySelector(".khokhu:last-child").classList.add("no");
-}

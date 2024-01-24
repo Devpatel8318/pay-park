@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.6.5",
     "json-server": "^0.17.1"
   },
   "description": "",
