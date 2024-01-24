@@ -1,5 +1,4 @@
 import { api } from '../../env.js'
-console.log(api)
 const map = L.map('map').setView([23.234724, 72.642108], 16)
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -581,62 +580,69 @@ function deg2rad(deg) {
 }
 
 const formEl = document.querySelector('.form1')
+formEl.addEventListener('submit', async (event) => {
+    event.preventDefault()
 
-formEl.addEventListener('submit', () => {
     const formData = new FormData(formEl)
     const dataOfForm = Object.fromEntries(formData)
-    var fetchedId = document.getElementById('id').innerText.slice(4)
-    fetch(`${api}/stock/${fetchedId}`)
-        .then((res) => res.json())
-        .then((json) => {
-            var total = json.customer.length + json.available
-            console.log(total)
+    const fetchedId = document.getElementById('id').innerText.slice(4)
 
-            function getRndInteger(min, max) {
-                return Math.floor(Math.random() * (max - min + 1)) + min
-            }
+    const { customer, name, car, status, date, slot, available } =
+        await fetchJsonData(`${api}/stock/${fetchedId}`)
 
-            console.log(json.slot)
-            var slot = json.slot
-            var r = getRndInteger(1, total)
+    const total = customer.length + available
+    const r = generateUniqueRandomNumber(1, total, slot)
 
-            while (true) {
-                r = getRndInteger(1, total)
-                if (slot.includes(r)) {
-                    continue
-                } else {
-                    slot.push(r)
-                    break
-                }
-            }
+    slot.push(r)
 
-            var customeer = json.customer
-            var name = json.name
-            var car = json.car
-            var stats = json.status
-            var dates = json.date
-            customeer.push(`${dataOfForm.email}`)
-            name.push(dataOfForm.name)
-            car.push(dataOfForm.car_no)
-            stats.push(1)
-            dates.push(-1)
+    updateArray(customer, dataOfForm.email)
+    updateArray(name, dataOfForm.name)
+    updateArray(car, dataOfForm.car_no)
+    updateArray(status, 1)
+    updateArray(date, -1)
 
-            fetch(`${api}/stock/${fetchedId}`, {
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                method: 'PATCH',
+    const patchData = {
+        customer,
+        name,
+        available: available - 1,
+        car,
+        status,
+        slot,
+        date,
+    }
 
-                body: JSON.stringify({
-                    customer: customeer,
-                    name: name,
-                    available: json.available - 1,
-                    car: car,
-                    status: stats,
-                    slot: slot,
-                    date: dates,
-                }),
-            })
-        })
+    await patchJsonData(`${api}/stock/${fetchedId}`, patchData)
 })
+
+async function fetchJsonData(url) {
+    const response = await fetch(url)
+    if (!response.ok) throw new Error(`Failed to fetch data for url: ${url}`)
+    return await response.json()
+}
+
+async function patchJsonData(url, data) {
+    const patchResponse = await fetch(url, {
+        method: 'PATCH',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+
+    if (!patchResponse.ok) {
+        throw new Error(`Failed to update data for url: ${url}`)
+    }
+}
+
+function generateUniqueRandomNumber(min, max, excludeArray) {
+    let randomNum
+    do {
+        randomNum = Math.floor(Math.random() * (max - min + 1)) + min
+    } while (excludeArray.includes(randomNum))
+    return randomNum
+}
+
+function updateArray(arr, value) {
+    arr.push(value)
+}
