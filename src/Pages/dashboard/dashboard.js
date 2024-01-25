@@ -1,4 +1,5 @@
-import { api, liveServerUrl } from '../../env.js'
+const api = 'http://localhost:6060'
+const liveServerUrl = 'http://127.0.0.1:5500'
 
 document.getElementById('home').addEventListener('click', function () {
     openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/index/index.html`)
@@ -278,7 +279,7 @@ function td_fun1(mail, name, car, price, status, slot) {
         c = 'bg-red-400 text-white'
     }
 
-    x = document.getElementById(`${car}`)
+    let x = document.getElementById(`${car}`)
     td.innerHTML = `
             <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
@@ -346,7 +347,7 @@ function td_fun2(number) {
 }
 
 function dev(x) {
-    row = 0
+    let row = 0
     for (let i = 1; i < x + 1; i++) {
         // console.log(i, row);
         let tbody = document.getElementById(`col${row + 1}`)

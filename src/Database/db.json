@@ -55,13 +55,13 @@
       "car": "GJ025252",
       "amount": "100",
       "pname": "Dev",
-      "slot": 50,
+      "slot": 77,
       "date": {
-        "day": 23,
+        "day": 25,
         "month": 0,
         "year": 2024,
-        "hour": 10,
-        "minute": 10
+        "hour": 21,
+        "minute": 42
       }
     }
   ],
@@ -115,14 +115,32 @@
       "date": []
     },
     {
-      "available": 121,
+      "available": 120,
       "id": 291,
-      "customer": [],
-      "name": [],
-      "car": [],
-      "status": [],
-      "slot": [],
-      "date": []
+      "customer": [
+        "devpatelm8318@gmail.com"
+      ],
+      "name": [
+        "dev"
+      ],
+      "car": [
+        "GJ025252"
+      ],
+      "status": [
+        2
+      ],
+      "slot": [
+        77
+      ],
+      "date": [
+        {
+          "day": 25,
+          "month": 0,
+          "year": 2024,
+          "hour": 21,
+          "minute": 42
+        }
+      ]
     }
   ]
 }

@@ -18,7 +18,8 @@
 </head>
 
 <body>
-    <div class="home text-indigo-400" id="home">
+    <div class="home text-indigo-400" id="home"
+        onclick="openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/index/index.html`)">
         <div>
             <div class="icons">
                 <i class="fa-solid fa-house fa-xl"></i>
@@ -26,7 +27,8 @@
             <h1>Home</h1>
         </div>
     </div>
-    <div class="home2 text-indigo-400" id="logout">
+    <div class="home2 text-indigo-400" id="logout"
+        onclick="openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/login/login.html`)">
         <div>
             <div class="icons">
                 <i class="fa-solid fa-right-from-bracket fa-xl"></i>
@@ -80,7 +82,23 @@
                 </div>
             </div>
         </div>
-        <script type="module" src="./dashboard.js"></script>
+        <script src="./dashboard.js"></script>
+        <script>
+            function fireClickEvent(element) {
+                var evt = new window.MouseEvent('click', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: true
+                })
+                element.dispatchEvent(evt)
+            }
+
+            function openNewURLInTheSameWindow(targetURL) {
+                var a = document.createElement('a')
+                a.href = targetURL
+                fireClickEvent(a)
+            }
+        </script>
 </body>
 
 </html>
