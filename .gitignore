@@ -2,4 +2,10 @@
 /.vscode
 ./node_modules
 /node_modules
-node_moduless
+node_modules
+
+
+./node_modules/
+/node_modules/
+node_modules/
+node_modules/

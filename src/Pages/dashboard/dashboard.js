@@ -15,9 +15,9 @@ fetch(`${api}/idd/1`)
     .then((response) => response.json())
     .then((result) => {
         var id = Object.values(result)[0]
-        fetch(`${api}/items/${id}`)
+        fetch(`http://localhost:7070/parking/view/${id}`)
             .then((res) => res.json())
-            .then((data) => {
+            .then(({ parking: data }) => {
                 document.getElementById('name').innerHTML = data.name
                 document.getElementById('id').innerHTML = `Id: ${data.id}`
                 fetch(`${api}/stock/${id}`)

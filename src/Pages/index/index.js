@@ -8,10 +8,10 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map)
 let x, y
 function fetchDataAndAddMarkers() {
-    fetch(`${api}/items`)
+    fetch(`http://localhost:7070/parking/list`)
         .then((response) => response.json())
-        .then((json) => {
-            json.forEach((data) => {
+        .then(({ parkings }) => {
+            parkings.forEach((data) => {
                 const markers = L.marker([data.xcoo, data.ycoo])
                     .addTo(map)
                     .bindPopup(data.name)
@@ -40,9 +40,9 @@ function fetchDataAndAddMarkers() {
 fetchDataAndAddMarkers()
 
 function panelchanger(x, y) {
-    fetch(`${api}/items`)
+    fetch(`http://localhost:7070/parking/list`)
         .then((itemsResponse) => itemsResponse.json())
-        .then((itemsJson) => {
+        .then(({ parkings: itemsJson }) => {
             const matchingItem = itemsJson.find(
                 (data) => data.xcoo == x && data.ycoo == y
             )
@@ -521,9 +521,9 @@ function showPosition2(position) {
 // let id;
 let id
 function nearest(xcoo, ycoo) {
-    fetch(`${api}/items`)
+    fetch(`http://localhost:7070/parking/list`)
         .then((res) => res.json())
-        .then((json) => {
+        .then(({ parkings: json }) => {
             let arr = []
             // console.log(json);
             json.map((data) => {

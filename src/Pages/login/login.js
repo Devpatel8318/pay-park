@@ -36,9 +36,9 @@ window.onload = function () {
 
         var x = ''
 
-        fetch(`${api}/items`)
+        fetch(`http://localhost:7070/parking/list`)
             .then((res) => res.json())
-            .then((json) => {
+            .then(({ parkings: json }) => {
                 json.map((dataJson) => {
                     // console.log(dataJson);
                     // console.log("form vadu:", dataOfForm.email);

@@ -182,7 +182,9 @@ formEl.addEventListener('submit', async (event) => {
     event.preventDefault()
 
     try {
-        const { data: itemsData } = await axios.get(`${api}/items`)
+        const {
+            data: { parkings: itemsData },
+        } = await axios.get('http://localhost:7070/parking/list')
 
         document.getElementById('ID').value =
             Number(itemsData[Object.keys(itemsData).pop()].id) + 1
@@ -196,20 +198,30 @@ formEl.addEventListener('submit', async (event) => {
         newItemData['xcoo'] = x.toString()
         newItemData['ycoo'] = y.toString()
 
-        const itemsResponse = await axios.post(`${api}/items`, newItemData)
-
-        const stockResponse = await axios.post(`${api}/stock`, {
-            available,
-            id: Number(newItemData.id),
-            customer: [],
-            name: [],
-            car: [],
-            status: [],
-            slot: [],
-            date: [],
+        Object.assign(newItemData, {
+            stock: {
+                available,
+                id: Number(newItemData.id),
+                customer: [],
+                name: [],
+                car: [],
+                status: [],
+                slot: [],
+                date: [],
+            },
         })
 
-        console.log(stockResponse.data)
+        await axios.post(`http://localhost:7070/parking/add`, newItemData)
+        // const stockResponse = await axios.post(`${api}/stock`, {
+        //     available,
+        //     id: Number(newItemData.id),
+        //     customer: [],
+        //     name: [],
+        //     car: [],
+        //     status: [],
+        //     slot: [],
+        //     date: [],
+        // })
         // openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/login/login.html`);
     } catch (error) {
         console.error(error.message)
