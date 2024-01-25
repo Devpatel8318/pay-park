@@ -77,22 +77,27 @@
       "date": []
     },
     {
-      "available": 74,
+      "available": 73,
       "id": 287,
       "customer": [
+        "devpatelm8318@gmail.com",
         "devpatelm8318@gmail.com"
       ],
       "name": [
+        "dev",
         "dev"
       ],
       "car": [
+        "GJ025252",
         "GJ025252"
       ],
       "status": [
-        2
+        2,
+        1
       ],
       "slot": [
-        45
+        45,
+        28
       ],
       "date": [
         {
@@ -101,7 +106,8 @@
           "year": 2024,
           "hour": 16,
           "minute": 56
-        }
+        },
+        -1
       ]
     },
     {

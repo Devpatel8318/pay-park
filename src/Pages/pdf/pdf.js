@@ -1,4 +1,4 @@
-import { api } from '../../env.js'
+const api = 'http://localhost:6060'
 window.onload = function () {
     namee = document.getElementById('Name')
     mail = document.getElementById('mail')

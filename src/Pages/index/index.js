@@ -1,4 +1,4 @@
-import { api } from '../../env.js'
+const api = 'http://localhost:6060'
 const map = L.map('map').setView([23.234724, 72.642108], 16)
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -6,7 +6,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map)
-
+let x, y
 function fetchDataAndAddMarkers() {
     fetch(`${api}/items`)
         .then((response) => response.json())
@@ -26,8 +26,8 @@ function fetchDataAndAddMarkers() {
                     [len - 1].setAttribute('id', names)
 
                 markers.on('click', function (e) {
-                    const x = e.latlng.lat
-                    const y = e.latlng.lng
+                    x = e.latlng.lat
+                    y = e.latlng.lng
                     panelchanger(x, y)
                 })
             })
@@ -112,8 +112,8 @@ function getLocation() {
 
 function showPosition(position) {
     const { latitude, longitude } = position.coords
-    Slatitude = 23.239931
-    Slongitude = 72.638254
+    Slatitude = latitude
+    Slongitude = longitude
     console.log(latitude, longitude)
     routing()
 }
@@ -139,6 +139,7 @@ function showError(error) {
 
 //Routing Start
 function routing() {
+    console.log('fghjkl')
     const myAPIKey = 'bed8b866464f4b369ab39767ba49258d'
     const isRetina = L.Browser.retina
 
