@@ -40,51 +40,33 @@ function fetchDataAndAddMarkers() {
 fetchDataAndAddMarkers()
 
 function panelchanger(x, y) {
-    fetch(`http://localhost:7070/parking/list`)
+    fetch(`http://localhost:7070/parking/coordinate/${x}/${y}`)
         .then((itemsResponse) => itemsResponse.json())
-        .then(({ parkings: itemsJson }) => {
-            const matchingItem = itemsJson.find(
-                (data) => data.xcoo == x && data.ycoo == y
-            )
-
-            if (matchingItem) {
+        .then(({ parking }) => {
+            if (parking) {
                 document.getElementById(
                     'nameOf'
-                ).innerHTML = `Name: ${matchingItem.name}`
+                ).innerHTML = `Name: ${parking.name}`
+                document.getElementById('id').innerHTML = `ID: ${parking.id}`
+                document.getElementById('price').innerHTML = `${parking.price}`
+
+                const { stock: stockData } = parking
+
+                const subElement = document.getElementById('sub')
+                subElement.style.display =
+                    stockData.available === 0 ? 'none' : 'inline-block'
+
+                const elementsToToggle = ['email', 'name', 'car_no']
+
+                elementsToToggle.forEach((elementId) => {
+                    const element = document.getElementById(elementId)
+                    element.style.display =
+                        stockData.available === 0 ? 'none' : 'block'
+                })
+
                 document.getElementById(
-                    'id'
-                ).innerHTML = `ID: ${matchingItem.id}`
-                document.getElementById(
-                    'price'
-                ).innerHTML = `${matchingItem.price}`
-
-                fetch(`${api}/stock/${matchingItem.id}`)
-                    .then((stockResponse) => stockResponse.json())
-                    .then((stockData) => {
-                        const subElement = document.getElementById('sub')
-                        const emailElement = document.getElementById('email')
-                        const nameElement = document.getElementById('name')
-                        const carNoElement = document.getElementById('car_no')
-
-                        if (stockData.available == 0) {
-                            subElement.style.display = 'none'
-                            emailElement.style.display = 'none'
-                            nameElement.style.display = 'none'
-                            carNoElement.style.display = 'none'
-                        } else {
-                            subElement.style.display = 'inline-block'
-                            emailElement.style.display = 'block'
-                            nameElement.style.display = 'block'
-                            carNoElement.style.display = 'block'
-                        }
-
-                        document.getElementById(
-                            'slotsAvailable'
-                        ).innerHTML = `Slots Available: ${stockData.available}`
-                    })
-                    .catch((error) => {
-                        console.error('Error fetching stock data:', error)
-                    })
+                    'slotsAvailable'
+                ).innerHTML = `Slots Available: ${stockData.available}`
             }
         })
         .catch((error) => {
@@ -588,19 +570,29 @@ formEl.addEventListener('submit', async (event) => {
     const dataOfForm = Object.fromEntries(formData)
     const fetchedId = document.getElementById('id').innerText.slice(4)
 
-    const { customer, name, car, status, date, slot, available } =
-        await fetchJsonData(`${api}/stock/${fetchedId}`)
+    const response = await fetch(
+        `http://localhost:7070/parking/view/${fetchedId}`
+    )
+    const {
+        parking: {
+            stock: { customer, name, car, status, date, slot, available },
+        },
+    } = await response.json()
+
+    if (available < 1) {
+        return alert('No Slots Available')
+    }
 
     const total = customer.length + available
     const r = generateUniqueRandomNumber(1, total, slot)
 
     slot.push(r)
 
-    updateArray(customer, dataOfForm.email)
-    updateArray(name, dataOfForm.name)
-    updateArray(car, dataOfForm.car_no)
-    updateArray(status, 1)
-    updateArray(date, -1)
+    customer.push(dataOfForm.email)
+    name.push(dataOfForm.name)
+    car.push(dataOfForm.car_no)
+    status.push(1)
+    date.push(-1)
 
     const patchData = {
         customer,
@@ -612,7 +604,12 @@ formEl.addEventListener('submit', async (event) => {
         date,
     }
 
-    await patchJsonData(`${api}/stock/${fetchedId}`, patchData)
+    await axios.patch(
+        `http://localhost:7070/parking/bookslot/${fetchedId}`,
+        patchData
+    )
+    alert('Slot Booked')
+    location.reload()
 })
 
 async function fetchJsonData(url) {
@@ -621,29 +618,10 @@ async function fetchJsonData(url) {
     return await response.json()
 }
 
-async function patchJsonData(url, data) {
-    const patchResponse = await fetch(url, {
-        method: 'PATCH',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-
-    if (!patchResponse.ok) {
-        throw new Error(`Failed to update data for url: ${url}`)
-    }
-}
-
 function generateUniqueRandomNumber(min, max, excludeArray) {
     let randomNum
     do {
         randomNum = Math.floor(Math.random() * (max - min + 1)) + min
     } while (excludeArray.includes(randomNum))
     return randomNum
-}
-
-function updateArray(arr, value) {
-    arr.push(value)
 }

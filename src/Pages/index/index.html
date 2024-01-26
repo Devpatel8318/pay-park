@@ -19,6 +19,7 @@
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -78,9 +79,9 @@
     <div id="panel">
       <div id="heading" style="color: #EEEEEE;">Pay Parking System</div>
       <br>
-      <div id="nameOf">Name: Dev</div>
-      <p> <b style="color: white;">Price: </b><span id="price" style="color: white;">200</span></p>
-      <div id="id" style="display: none; ">ID: 01</div>
+      <div id="nameOf">Name: select parking</div>
+      <p> <b style="color: white;">Price: </b><span id="price" style="color: white;"></span></p>
+      <div id="id" style="display: none; "></div>
       <div class="slotsAvailable" style="color:white;" white; id="slotsAvailable"></div>
       <form action="" class="form1" id="form1">
         <br>

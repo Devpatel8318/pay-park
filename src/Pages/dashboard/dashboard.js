@@ -10,246 +10,213 @@ document.getElementById('logout').addEventListener('click', function () {
 })
 
 document.getElementById('name').innerHTML
-var id
-fetch(`${api}/idd/1`)
-    .then((response) => response.json())
-    .then((result) => {
-        var id = Object.values(result)[0]
-        fetch(`http://localhost:7070/parking/view/${id}`)
-            .then((res) => res.json())
-            .then(({ parking: data }) => {
-                document.getElementById('name').innerHTML = data.name
-                document.getElementById('id').innerHTML = `Id: ${data.id}`
-                fetch(`${api}/stock/${id}`)
-                    .then((res) => res.json())
-                    .then((data2) => {
-                        // console.log(document.getElementById("people"));
-                        let tbody = document.getElementById('people')
-                        document.getElementById('slots').innerHTML = `${
-                            data2.available
-                        }/${data2.available + data2.customer.length}`
-                        for (
-                            let index = 0;
-                            index < data2.customer.length;
-                            index++
-                        ) {
-                            // console.log(index);
-                            // console.log(tbody);
-                            tbody.append(
-                                td_fun1(
-                                    data2.customer[index],
-                                    data2.name[index],
-                                    data2.car[index],
-                                    data.price,
-                                    data2.status[index],
-                                    data2.slot[index]
-                                )
-                            )
-                        }
-                        var space = data2.available + data2.customer.length
-                        dev(space)
+// fetch(`${api}/idd/1`)
+// .then((response) => response.json())
+// .then((result) => {
+const id = window.localStorage.getItem('loggedIn')
 
-                        for (let i = 0; i < data2.customer.length; i++) {
-                            if (data2.status[i] == 1) {
-                                document
-                                    .getElementById(data2.slot[i])
-                                    .classList.add('booked')
-                                document.getElementById(
-                                    data2.slot[i]
-                                ).innerHTML = data2.name[i]
-                            } else if (data2.status[i] == 2) {
-                                document
-                                    .getElementById(data2.slot[i])
-                                    .classList.add('pack')
-                                document.getElementById(
-                                    data2.slot[i]
-                                ).innerHTML = data2.name[i]
-                                document
-                                    .getElementById(data2.slot[i])
-                                    .addEventListener('click', function () {
-                                        console.log(data2.name[i])
-                                        console.log(data2.id)
+// Remove from parking EVENT
+fetch(`http://localhost:7070/parking/view/${id}`)
+    .then((res) => res.json())
+    .then(({ parking: data }) => {
+        document.getElementById('name').innerHTML = data.name
+        document.getElementById('id').innerHTML = `Id: ${data.id}`
+        // fetch(`${api}/stock/${id}`)
+        // .then((res) => res.json())
+        // .then((data2) => {
+        const data2 = data.stock
+        // console.log(document.getElementById("people"));
+        let tbody = document.getElementById('people')
+        document.getElementById('slots').innerHTML = `${data2.available}/${
+            data2.available + data2.customer.length
+        }`
+        for (let index = 0; index < data2.customer.length; index++) {
+            // console.log(index);
+            // console.log(tbody);
+            tbody.append(
+                td_fun1(
+                    data2.customer[index],
+                    data2.name[index],
+                    data2.car[index],
+                    data.price,
+                    data2.status[index],
+                    data2.slot[index]
+                )
+            )
+        }
+        var space = data2.available + data2.customer.length
+        dev(space)
 
-                                        const response = confirm(
-                                            'Remove parking slot?'
-                                        )
+        for (let i = 0; i < data2.customer.length; i++) {
+            if (data2.status[i] == 1) {
+                document.getElementById(data2.slot[i]).classList.add('booked')
+                document.getElementById(data2.slot[i]).innerHTML = data2.name[i]
+            } else if (data2.status[i] == 2) {
+                document.getElementById(data2.slot[i]).classList.add('pack')
+                document.getElementById(data2.slot[i]).innerHTML = data2.name[i]
+                document
+                    .getElementById(data2.slot[i])
+                    .addEventListener('click', function () {
+                        console.log(data2.name[i])
+                        console.log(data2.id)
 
-                                        if (response) {
-                                            fetch(`${api}/stock/${data2.id}`)
-                                                .then((res) => res.json())
-                                                .then((data) => {
-                                                    console.log(data.name[i])
-                                                })
-                                            var myHeaders = new Headers()
-                                            myHeaders.append(
-                                                'Content-Type',
-                                                'application/json'
-                                            )
+                        const response = confirm('Remove parking slot?')
 
-                                            var raww = JSON.stringify({
-                                                name: data2.name[i],
-                                                email: data2.customer[i],
-                                                car: data2.car[i],
-                                                pname: document.getElementById(
-                                                    'name'
-                                                ).innerHTML,
-                                                slot: data2.slot[i],
-                                                date: data2.date[i],
-                                                amount: data2.amount,
-                                            })
-                                            console.log(raww)
-                                            var requestOptions = {
-                                                method: 'PATCH',
-                                                headers: myHeaders,
-                                                body: raww,
-                                                redirect: 'follow',
-                                            }
-                                            fetch(
-                                                `${api}/receipt/1`,
-                                                requestOptions
-                                            ).then((response) =>
-                                                response.text()
-                                            )
+                        if (response) {
+                            // fetch(`${api}/stock/${data2.id}`)
+                            //     .then((res) => res.json())
+                            //     .then((data) => {
+                            //         console.log(data.name[i])
+                            //     })
+                            var myHeaders = new Headers()
+                            myHeaders.append('Content-Type', 'application/json')
 
-                                            var customer_edited = data2.customer
-                                            var name_edited = data2.name
-                                            var car_edited = data2.car
-                                            var slot_edited = data2.slot
-                                            var status_edited = data2.status
-                                            var date_edited = data2.date
-                                            var index = i
-                                            if (index > -1) {
-                                                customer_edited.splice(index, 1)
-                                                name_edited.splice(index, 1)
-                                                car_edited.splice(index, 1)
-                                                slot_edited.splice(index, 1)
-                                                status_edited.splice(index, 1)
-                                                date_edited.splice(index, 1)
-                                            }
-                                            fetch(`${api}/stock/${id}`, {
-                                                headers: {
-                                                    Accept: 'application/json',
-                                                    'Content-Type':
-                                                        'application/json',
-                                                },
-                                                method: 'PATCH',
-
-                                                body: JSON.stringify({
-                                                    status: status_edited,
-                                                    customer: customer_edited,
-                                                    slot: slot_edited,
-                                                    name: name_edited,
-                                                    car: car_edited,
-                                                    available:
-                                                        data2.available + 1,
-                                                    date: date_edited,
-                                                    amount: data2.amount,
-                                                }),
-                                            })
-                                            openNewURLInTheSameWindow(
-                                                `${liveServerUrl}/src/Pages/pdf/pdf.html`
-                                            )
-                                        } else {
-                                        }
-                                    })
+                            // For RECEIPT
+                            var raww = JSON.stringify({
+                                name: data2.name[i],
+                                email: data2.customer[i],
+                                car: data2.car[i],
+                                pname: document.getElementById('name')
+                                    .innerHTML,
+                                slot: data2.slot[i],
+                                date: data2.date[i],
+                                amount: data2.amount,
+                            })
+                            console.log(raww)
+                            var requestOptions = {
+                                method: 'PATCH',
+                                headers: myHeaders,
+                                body: raww,
+                                redirect: 'follow',
                             }
+                            fetch(`${api}/receipt/1`, requestOptions).then(
+                                (response) => response.text()
+                            )
+
+                            var customer_edited = data2.customer
+                            var name_edited = data2.name
+                            var car_edited = data2.car
+                            var slot_edited = data2.slot
+                            var status_edited = data2.status
+                            var date_edited = data2.date
+                            var index = i
+                            if (index > -1) {
+                                customer_edited.splice(index, 1)
+                                name_edited.splice(index, 1)
+                                car_edited.splice(index, 1)
+                                slot_edited.splice(index, 1)
+                                status_edited.splice(index, 1)
+                                date_edited.splice(index, 1)
+                            }
+
+                            const body = JSON.stringify({
+                                status: status_edited,
+                                customer: customer_edited,
+                                slot: slot_edited,
+                                name: name_edited,
+                                car: car_edited,
+                                available: data2.available + 1,
+                                date: date_edited,
+                                amount: data2.amount,
+                            })
+
+                            console.log(body)
+
+                            // fetch(`${api}/stock/${id}`, {
+                            //     headers: {
+                            //         Accept: 'application/json',
+                            //         'Content-Type': 'application/json',
+                            //     },
+                            //     method: 'PATCH',
+                            // })
+
+                            // axios.patch(
+                            //     `http://localhost:7070/parking/bookslot/${id}`,
+                            //     body
+                            // )
+
+                            openNewURLInTheSameWindow(
+                                `${liveServerUrl}/src/Pages/pdf/pdf.html`
+                            )
+                        } else {
                         }
                     })
-            })
+            }
+        }
+        // })
     })
+// })
 document.getElementById('${car}')
 
+//CAR ENTERED PARKING EVENT
 function test(mail, name, car, price) {
-    fetch(`${api}/idd/1`)
+    var id = window.localStorage.getItem('loggedIn')
+    fetch(`http://localhost:7070/parking/view/${id}`)
         .then((res) => res.json())
-        .then((json) => {
-            var id = Object.values(json)[0]
+        .then(({ parking }) => {
+            const { stock: data } = parking
 
-            fetch(`${api}/stock/${id}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    x = data.customer.indexOf(mail)
-                    y = document.getElementById(data.slot[x])
+            x = data.customer.indexOf(mail)
+            y = document.getElementById(data.slot[x])
+            if (data.status[x] != 1) {
+                return
+            }
+            data.status[x] = 2
 
-                    // console.log(data.status);
-                    data.status[x] = 2
-                    z = data.status
-                    // console.log(z);
+            var myHeaders = new Headers()
+            myHeaders.append('Content-Type', 'application/json')
 
-                    fetch(`${api}/stock/${id}`, {
-                        headers: {
-                            Accept: 'application/json',
-                            'Content-Type': 'application/json',
-                        },
-                        method: 'PATCH',
+            parkedDate = data.date
+            const date = new Date()
+            const time = {
+                day: date.getDate(),
+                month: date.getMonth(),
+                year: date.getFullYear(),
+                hour: date.getHours(),
+                minute: date.getMinutes(),
+            }
+            parkedDate[x] = time
+            console.log(data)
+            const patchData = {
+                customer: data.customer,
+                name: data.name,
+                available: data.available,
+                car: data.car,
+                status: data.status,
+                slot: data.slot,
+                date: parkedDate,
+            }
+            console.log(patchData)
 
-                        body: JSON.stringify({
-                            status: z,
-                        }),
-                    })
-                })
-
-            fetch(`${api}/stock/${id}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    var xy = data.customer.indexOf(mail)
-                    // console.log(xy);
-                    var yz = data.slot[xy]
-                    var myHeaders = new Headers()
-                    myHeaders.append('Content-Type', 'application/json')
-                    // console.log(name);
-                    // console.log(mail);
-                    // console.log(car);
-                    // console.log("dev patel",data.dev);
-                    // console.log("dev patel",name);
-                    // console.log(xy);
-                    console.log(data.date)
-                    bhagat = data.date
-                    const date = new Date()
-                    const time = {
-                        day: date.getDate(),
-                        month: date.getMonth(),
-                        year: date.getFullYear(),
-                        hour: date.getHours(),
-                        minute: date.getMinutes(),
-                    }
-                    bhagat[xy] = time
-
-                    console.log(bhagat)
-
-                    fetch(`${api}/stock/${id}`, {
-                        headers: {
-                            Accept: 'application/json',
-                            'Content-Type': 'application/json',
-                        },
-                        method: 'PATCH',
-
-                        // Fields that to be updated are passed
-                        body: JSON.stringify({
-                            date: bhagat,
-                        }),
-                    })
-                    var raw = JSON.stringify({
-                        name: name,
-                        email: mail,
-                        car: car,
-                        amount: price,
-                        pname: document.getElementById('name').innerHTML,
-                        slot: yz,
-                        date: bhagat[xy],
-                    })
-                    console.log(raw)
-                    var requestOptions = {
-                        method: 'PATCH',
-                        headers: myHeaders,
-                        body: raw,
-                        redirect: 'follow',
-                    }
-                    fetch(`${api}/receipt/1`, requestOptions).then((response) =>
-                        response.text()
-                    )
-                })
+            fetch(`http://localhost:7070/parking/bookslot/${id}`, {
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                method: 'PATCH',
+                body: JSON.stringify(patchData),
+            })
+            // for receipt
+            var raw = {
+                name: name,
+                email: mail,
+                car: car,
+                amount: price,
+                pname: document.getElementById('name').innerHTML,
+                slot: data.slot[x],
+                date: parkedDate[x],
+            }
+            console.log(raw)
+            var requestOptions = {
+                method: 'PATCH',
+                headers: myHeaders,
+                body: JSON.stringify(raw),
+                redirect: 'follow',
+            }
+            fetch(`http://localhost:7070/parking/receipt`, requestOptions)
+            location.reload()
         })
+    // })
 }
 function fireClickEvent(element) {
     var evt = new window.MouseEvent('click', {

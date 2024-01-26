@@ -181,49 +181,37 @@ const formEl = document.querySelector('.form1')
 formEl.addEventListener('submit', async (event) => {
     event.preventDefault()
 
-    try {
-        const {
-            data: { parkings: itemsData },
-        } = await axios.get('http://localhost:7070/parking/list')
+    const {
+        data: { parkings: itemsData },
+    } = await axios.get('http://localhost:7070/parking/list')
 
-        document.getElementById('ID').value =
-            Number(itemsData[Object.keys(itemsData).pop()].id) + 1
+    // document.getElementById('ID').value =
+    //     Number(itemsData[Object.keys(itemsData).pop()].id) + 1
 
-        const formData = new FormData(formEl)
-        const newItemData = Object.fromEntries(formData)
-        const available = Number(newItemData?.Slots)
+    const formData = new FormData(formEl)
+    const newItemData = Object.fromEntries(formData)
+    const available = Number(newItemData?.Slots)
 
-        delete newItemData['otp']
-        delete newItemData['slots']
-        newItemData['xcoo'] = x.toString()
-        newItemData['ycoo'] = y.toString()
+    delete newItemData['otp']
+    delete newItemData['slots']
+    newItemData['xcoo'] = x.toString()
+    newItemData['ycoo'] = y.toString()
+    console.log(itemsData)
+    const id = itemsData.length ? itemsData[itemsData.length - 1].id + 1 : 1
+    newItemData['id'] = id.toString()
+    Object.assign(newItemData, {
+        stock: {
+            available,
+            id: Number(id),
+            customer: [],
+            name: [],
+            car: [],
+            status: [],
+            slot: [],
+            date: [],
+        },
+    })
 
-        Object.assign(newItemData, {
-            stock: {
-                available,
-                id: Number(newItemData.id),
-                customer: [],
-                name: [],
-                car: [],
-                status: [],
-                slot: [],
-                date: [],
-            },
-        })
-
-        await axios.post(`http://localhost:7070/parking/add`, newItemData)
-        // const stockResponse = await axios.post(`${api}/stock`, {
-        //     available,
-        //     id: Number(newItemData.id),
-        //     customer: [],
-        //     name: [],
-        //     car: [],
-        //     status: [],
-        //     slot: [],
-        //     date: [],
-        // })
-        // openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/login/login.html`);
-    } catch (error) {
-        console.error(error.message)
-    }
+    await axios.post(`http://localhost:7070/parking/add`, newItemData)
+    openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/login/login.html`)
 })

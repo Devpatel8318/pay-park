@@ -32,16 +32,17 @@ app.use(async (ctx, next) => {
         }
     }
 })
-app.use(
-    bodyParser({
-        enableTypes: ['json'],
-        onerror(err, ctx) {
-            const error = new Error('Invalid Body')
-            error.status = 422
-            throw error
-        },
-    })
-)
+app.use(bodyParser())
+// app.use(
+//     bodyParser({
+//         enableTypes: ['json'],
+//         onerror(err, ctx) {
+//             const error = new Error('Invalid Body')
+//             error.status = 422
+//             throw error
+//         },
+//     })
+// )
 
 app.use(parkingRouter.routes())
 // app.use(subjectRouter.routes())

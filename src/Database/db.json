@@ -50,18 +50,18 @@
   "receipt": [
     {
       "id": 1,
-      "name": "dev",
-      "email": "devpatelm8318@gmail.com",
-      "car": "GJ025252",
+      "name": "Aaryan",
+      "email": "aaryanpatel0070@gmail.com",
+      "car": "GJ02DE2323",
       "amount": "100",
       "pname": "Dev",
-      "slot": 77,
+      "slot": 32,
       "date": {
-        "day": 25,
+        "day": 26,
         "month": 0,
         "year": 2024,
-        "hour": 21,
-        "minute": 42
+        "hour": 9,
+        "minute": 57
       }
     }
   ],
@@ -140,12 +140,15 @@
       ],
       "date": [
         {
-          "day": 25,
+          "day": 26,
           "month": 0,
           "year": 2024,
-          "hour": 21,
-          "minute": 42
-        }
+          "hour": 9,
+          "minute": 36
+        },
+        -1,
+        -1,
+        -1
       ]
     }
   ]

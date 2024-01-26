@@ -57,23 +57,10 @@ window.onload = function () {
                         id: 1,
                         logged: x.id,
                     }
-
-                    fetch(`${api}/idd/1`, {
-                        headers: {
-                            Accept: 'application/json',
-                            'Content-Type': 'application/json',
-                        },
-                        method: 'PATCH',
-
-                        // Fields that to be updated are passed
-                        body: JSON.stringify({
-                            logged: x.id,
-                        }),
-                    }).then(function (data) {
-                        openNewURLInTheSameWindow(
-                            `${liveServerUrl}/src/Pages/dashboard/dashboard.html`
-                        )
-                    })
+                    window.localStorage.setItem('loggedIn', x.id)
+                    openNewURLInTheSameWindow(
+                        `${liveServerUrl}/src/Pages/dashboard/dashboard.html`
+                    )
                 } else {
                     if (document.getElementById('password').value == '') {
                         alert('Please Enter Password')

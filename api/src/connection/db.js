@@ -10,28 +10,28 @@ const mongodbConnection = async () => {
 
         const db = client.db()
 
-        // Check if collections exist
-        const collections = await db.listCollections().toArray()
+        // // Check if collections exist
+        // const collections = await db.listCollections().toArray()
 
-        if (!collections.some((collection) => collection.name === 'students')) {
-            await db.createCollection('students')
-        }
+        // if (!collections.some((collection) => collection.name === 'students')) {
+        //     await db.createCollection('students')
+        // }
 
-        if (!collections.some((collection) => collection.name === 'subjects')) {
-            await db.createCollection('subjects')
-        }
+        // if (!collections.some((collection) => collection.name === 'subjects')) {
+        //     await db.createCollection('subjects')
+        // }
 
-        if (!collections.some((collection) => collection.name === 'results')) {
-            await db.createCollection('results')
-        }
+        // if (!collections.some((collection) => collection.name === 'results')) {
+        //     await db.createCollection('results')
+        // }
 
-        if (
-            !collections.some(
-                (collection) => collection.name === 'allowedUsers'
-            )
-        ) {
-            await db.createCollection('allowedUsers')
-        }
+        // if (
+        //     !collections.some(
+        //         (collection) => collection.name === 'allowedUsers'
+        //     )
+        // ) {
+        //     await db.createCollection('allowedUsers')
+        // }
 
         return db
     } catch (err) {
