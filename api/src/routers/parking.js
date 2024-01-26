@@ -1,27 +1,6 @@
 import Router from '@koa/router'
 
 import db from '../connection/db.js'
-// import {
-//     isPasswordCorrect,
-//     doesParkingExistByEmail,
-//     doesParkingExistById,
-//     doesParkingExistByIdAndAttach,
-//     isFieldsValid,
-//     isEmailAvailable,
-//     isFirstNameValid,
-//     isLastNameValid,
-//     isEmailValid,
-//     isPasswordValid,
-// } from '../validators/parkingValidators.js'
-
-// import {
-//     deleteParking,
-//     getOneParking,
-//     getAllParkings,
-//     loginParking,
-//     updateParking,
-//     createParking,
-// } from '../controllers/parkingControllers.js'
 
 export const router = new Router({ prefix: '/parking' })
 
@@ -80,9 +59,6 @@ router.patch('/bookslot/:id', async (ctx) => {
     stock.status = status
     stock.slot = newslot
     stock.date = date
-
-    console.log(stock)
-
     await db.collection('parking').updateOne(
         { id },
         {
@@ -96,7 +72,6 @@ router.patch('/bookslot/:id', async (ctx) => {
 })
 
 router.patch('/receipt', async (ctx) => {
-    console.log(ctx.request.body)
     const { name, email, car, amount, pname, slot, date } = ctx.request.body
     const updatedData = { name, email, car, amount, pname, slot, date }
 
@@ -113,63 +88,7 @@ router.patch('/receipt', async (ctx) => {
 
 router.get('/receipt/view', async (ctx) => {
     const response = await db.collection('receipt').findOne()
-    console.log(response)
     ctx.body = response
 })
-
-// // Get Single parking
-// router.get(
-//     '/view/:parkingId',
-//     validator([doesParkingExistByIdAndAttach]),
-//     getOneParking
-// )
-
-// // Parking Login
-// router.post(
-//     '/login',
-//     validator([
-//         isFieldsValid,
-//         isEmailValid,
-//         isPasswordValid,
-//         doesParkingExistByEmail,
-//         isPasswordCorrect,
-//     ]),
-//     loginParking
-// )
-
-// // Create a new parking
-// router.post(
-//     '/add',
-//     validator([
-//         isFieldsValid,
-//         isEmailValid,
-//         isEmailAvailable,
-//         isFirstNameValid,
-//         isLastNameValid,
-//         isPasswordValid,
-//     ]),
-//     createParking
-// )
-
-// // Update a Parking
-// router.patch(
-//     '/edit/:parkingId',
-//     validator([
-//         isFieldsValid,
-//         doesParkingExistById,
-//         isEmailValid,
-//         isFirstNameValid,
-//         isLastNameValid,
-//         isPasswordValid,
-//     ]),
-//     updateParking
-// )
-
-// // Delete a parking
-// router.delete(
-//     '/delete/:parkingId',
-//     validator([doesParkingExistByIdAndAttach]),
-//     deleteParking
-// )
 
 export default router

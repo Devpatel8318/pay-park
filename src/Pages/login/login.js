@@ -36,7 +36,7 @@ window.onload = function () {
 
         var x = ''
 
-        fetch(`http://localhost:7070/parking/list`)
+        fetch(`${api}/parking/list`)
             .then((res) => res.json())
             .then(({ parkings: json }) => {
                 json.map((dataJson) => {

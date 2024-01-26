@@ -1,4 +1,4 @@
-const api = 'http://localhost:6060'
+const api = 'http://localhost:7070'
 const liveServerUrl = 'http://127.0.0.1:5500'
 
 document.getElementById('home').addEventListener('click', function () {
@@ -10,13 +10,11 @@ document.getElementById('logout').addEventListener('click', function () {
 })
 
 document.getElementById('name').innerHTML
-// fetch(`${api}/idd/1`)
-// .then((response) => response.json())
-// .then((result) => {
+
 const id = window.localStorage.getItem('loggedIn')
 
 // Remove from parking EVENT
-fetch(`http://localhost:7070/parking/view/${id}`)
+fetch(`${api}/parking/view/${id}`)
     .then((res) => res.json())
     .then(({ parking: data }) => {
         document.getElementById('name').innerHTML = data.name
@@ -74,7 +72,7 @@ fetch(`http://localhost:7070/parking/view/${id}`)
                             //     redirect: 'follow',
                             // }
                             // fetch(
-                            //     `http://localhost:7070/parking/receipt`,
+                            //     `${api}/parking/receipt`,
                             //     requestOptions
                             // )
 
@@ -97,10 +95,7 @@ fetch(`http://localhost:7070/parking/view/${id}`)
                                 body: JSON.stringify(raww2),
                                 redirect: 'follow',
                             }
-                            fetch(
-                                `http://localhost:7070/parking/receipt`,
-                                requestOptions
-                            )
+                            fetch(`${api}/parking/receipt`, requestOptions)
 
                             var customer_edited = data2.customer
                             var name_edited = data2.name
@@ -129,17 +124,14 @@ fetch(`http://localhost:7070/parking/view/${id}`)
                                 slot: slot_edited,
                             })
 
-                            fetch(
-                                `http://localhost:7070/parking/bookslot/${id}`,
-                                {
-                                    headers: {
-                                        Accept: 'application/json',
-                                        'Content-Type': 'application/json',
-                                    },
-                                    method: 'PATCH',
-                                    body,
-                                }
-                            )
+                            fetch(`${api}/parking/bookslot/${id}`, {
+                                headers: {
+                                    Accept: 'application/json',
+                                    'Content-Type': 'application/json',
+                                },
+                                method: 'PATCH',
+                                body,
+                            })
 
                             openNewURLInTheSameWindow(
                                 `${liveServerUrl}/src/Pages/pdf/pdf.html`
@@ -155,7 +147,7 @@ document.getElementById('${car}')
 //CAR ENTERED PARKING EVENT
 function test(mail, name, car, price) {
     var id = window.localStorage.getItem('loggedIn')
-    fetch(`http://localhost:7070/parking/view/${id}`)
+    fetch(`${api}/parking/view/${id}`)
         .then((res) => res.json())
         .then(({ parking }) => {
             const { stock: data } = parking
@@ -188,7 +180,7 @@ function test(mail, name, car, price) {
                 date: parkedDate,
             }
 
-            fetch(`http://localhost:7070/parking/bookslot/${id}`, {
+            fetch(`${api}/parking/bookslot/${id}`, {
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
@@ -215,11 +207,9 @@ function test(mail, name, car, price) {
                 body: JSON.stringify(raw),
                 redirect: 'follow',
             }
-            fetch(`http://localhost:7070/parking/receipt`, requestOptions).then(
-                (data) => {
-                    location.reload()
-                }
-            )
+            fetch(`${api}/parking/receipt`, requestOptions).then((data) => {
+                location.reload()
+            })
         })
     // })
 }

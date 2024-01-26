@@ -183,7 +183,7 @@ formEl.addEventListener('submit', async (event) => {
 
     const {
         data: { parkings: itemsData },
-    } = await axios.get('http://localhost:7070/parking/list')
+    } = await axios.get('${api}/parking/list')
 
     // document.getElementById('ID').value =
     //     Number(itemsData[Object.keys(itemsData).pop()].id) + 1
@@ -212,6 +212,6 @@ formEl.addEventListener('submit', async (event) => {
         },
     })
 
-    await axios.post(`http://localhost:7070/parking/add`, newItemData)
+    await axios.post(`${api}/parking/add`, newItemData)
     openNewURLInTheSameWindow(`${liveServerUrl}/src/Pages/login/login.html`)
 })

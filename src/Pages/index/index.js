@@ -1,4 +1,4 @@
-const api = 'http://localhost:6060'
+const api = 'http://localhost:7070'
 const map = L.map('map').setView([23.234724, 72.642108], 16)
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -8,7 +8,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map)
 let x, y
 function fetchDataAndAddMarkers() {
-    fetch(`http://localhost:7070/parking/list`)
+    fetch(`${api}/parking/list`)
         .then((response) => response.json())
         .then(({ parkings }) => {
             parkings.forEach((data) => {
@@ -40,7 +40,7 @@ function fetchDataAndAddMarkers() {
 fetchDataAndAddMarkers()
 
 function panelchanger(x, y) {
-    fetch(`http://localhost:7070/parking/coordinate/${x}/${y}`)
+    fetch(`${api}/parking/coordinate/${x}/${y}`)
         .then((itemsResponse) => itemsResponse.json())
         .then(({ parking }) => {
             if (parking) {
@@ -503,7 +503,7 @@ function showPosition2(position) {
 // let id;
 let id
 function nearest(xcoo, ycoo) {
-    fetch(`http://localhost:7070/parking/list`)
+    fetch(`${api}/parking/list`)
         .then((res) => res.json())
         .then(({ parkings: json }) => {
             let arr = []
@@ -570,9 +570,7 @@ formEl.addEventListener('submit', async (event) => {
     const dataOfForm = Object.fromEntries(formData)
     const fetchedId = document.getElementById('id').innerText.slice(4)
 
-    const response = await fetch(
-        `http://localhost:7070/parking/view/${fetchedId}`
-    )
+    const response = await fetch(`${api}/parking/view/${fetchedId}`)
     const {
         parking: {
             stock: { customer, name, car, status, date, slot, available },
@@ -604,10 +602,7 @@ formEl.addEventListener('submit', async (event) => {
         date,
     }
 
-    await axios.patch(
-        `http://localhost:7070/parking/bookslot/${fetchedId}`,
-        patchData
-    )
+    await axios.patch(`${api}/parking/bookslot/${fetchedId}`, patchData)
     alert('Slot Booked')
     location.reload()
 })

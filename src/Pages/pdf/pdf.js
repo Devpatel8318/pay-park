@@ -1,4 +1,4 @@
-const api = 'http://localhost:6060'
+const api = 'http://localhost:7070'
 window.onload = function () {
     namee = document.getElementById('Name')
     mail = document.getElementById('mail')
@@ -18,7 +18,7 @@ window.onload = function () {
 
     document.getElementById('time').innerHTML = `${time}<br>${date}`
 
-    fetch(`http://localhost:7070/parking/receipt/view`)
+    fetch(`${api}/parking/receipt/view`)
         .then((res) => res.json())
         .then((data) => {
             console.log('====================================')
