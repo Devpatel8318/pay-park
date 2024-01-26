@@ -21,18 +21,12 @@ fetch(`http://localhost:7070/parking/view/${id}`)
     .then(({ parking: data }) => {
         document.getElementById('name').innerHTML = data.name
         document.getElementById('id').innerHTML = `Id: ${data.id}`
-        // fetch(`${api}/stock/${id}`)
-        // .then((res) => res.json())
-        // .then((data2) => {
         const data2 = data.stock
-        // console.log(document.getElementById("people"));
         let tbody = document.getElementById('people')
         document.getElementById('slots').innerHTML = `${data2.available}/${
             data2.available + data2.customer.length
         }`
         for (let index = 0; index < data2.customer.length; index++) {
-            // console.log(index);
-            // console.log(tbody);
             tbody.append(
                 td_fun1(
                     data2.customer[index],
@@ -57,40 +51,55 @@ fetch(`http://localhost:7070/parking/view/${id}`)
                 document
                     .getElementById(data2.slot[i])
                     .addEventListener('click', function () {
-                        console.log(data2.name[i])
-                        console.log(data2.id)
-
                         const response = confirm('Remove parking slot?')
 
                         if (response) {
-                            // fetch(`${api}/stock/${data2.id}`)
-                            //     .then((res) => res.json())
-                            //     .then((data) => {
-                            //         console.log(data.name[i])
-                            //     })
-                            var myHeaders = new Headers()
-                            myHeaders.append('Content-Type', 'application/json')
+                            // // for receipt
+                            // const raw = {
+                            //     name: name,
+                            //     email: mail,
+                            //     car: car,
+                            //     amount: price,
+                            //     pname: document.getElementById('name')
+                            //         .innerHTML,
+                            //     slot: data.slot[x],
+                            //     date: parkedDate[x],
+                            // }
+                            // var myHeaders = new Headers()
+                            // myHeaders.append('Content-Type', 'application/json')
+                            // const requestOptions = {
+                            //     method: 'PATCH',
+                            //     headers: myHeaders,
+                            //     body: JSON.stringify(raw),
+                            //     redirect: 'follow',
+                            // }
+                            // fetch(
+                            //     `http://localhost:7070/parking/receipt`,
+                            //     requestOptions
+                            // )
 
-                            // For RECEIPT
-                            var raww = JSON.stringify({
+                            // For RECEIPT NEW
+                            var raww2 = {
                                 name: data2.name[i],
                                 email: data2.customer[i],
                                 car: data2.car[i],
+                                amount: data.price,
                                 pname: document.getElementById('name')
                                     .innerHTML,
                                 slot: data2.slot[i],
                                 date: data2.date[i],
-                                amount: data2.amount,
-                            })
-                            console.log(raww)
-                            var requestOptions = {
+                            }
+                            var myHeaders = new Headers()
+                            myHeaders.append('Content-Type', 'application/json')
+                            const requestOptions = {
                                 method: 'PATCH',
                                 headers: myHeaders,
-                                body: raww,
+                                body: JSON.stringify(raww2),
                                 redirect: 'follow',
                             }
-                            fetch(`${api}/receipt/1`, requestOptions).then(
-                                (response) => response.text()
+                            fetch(
+                                `http://localhost:7070/parking/receipt`,
+                                requestOptions
                             )
 
                             var customer_edited = data2.customer
@@ -110,30 +119,27 @@ fetch(`http://localhost:7070/parking/view/${id}`)
                             }
 
                             const body = JSON.stringify({
-                                status: status_edited,
-                                customer: customer_edited,
-                                slot: slot_edited,
-                                name: name_edited,
-                                car: car_edited,
                                 available: data2.available + 1,
+                                name: data2.name,
+                                id: data2.id,
+                                customer: customer_edited,
+                                car: car_edited,
+                                status: status_edited,
                                 date: date_edited,
-                                amount: data2.amount,
+                                slot: slot_edited,
                             })
 
-                            console.log(body)
-
-                            // fetch(`${api}/stock/${id}`, {
-                            //     headers: {
-                            //         Accept: 'application/json',
-                            //         'Content-Type': 'application/json',
-                            //     },
-                            //     method: 'PATCH',
-                            // })
-
-                            // axios.patch(
-                            //     `http://localhost:7070/parking/bookslot/${id}`,
-                            //     body
-                            // )
+                            fetch(
+                                `http://localhost:7070/parking/bookslot/${id}`,
+                                {
+                                    headers: {
+                                        Accept: 'application/json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    method: 'PATCH',
+                                    body,
+                                }
+                            )
 
                             openNewURLInTheSameWindow(
                                 `${liveServerUrl}/src/Pages/pdf/pdf.html`
@@ -143,9 +149,7 @@ fetch(`http://localhost:7070/parking/view/${id}`)
                     })
             }
         }
-        // })
     })
-// })
 document.getElementById('${car}')
 
 //CAR ENTERED PARKING EVENT
@@ -163,9 +167,6 @@ function test(mail, name, car, price) {
             }
             data.status[x] = 2
 
-            var myHeaders = new Headers()
-            myHeaders.append('Content-Type', 'application/json')
-
             parkedDate = data.date
             const date = new Date()
             const time = {
@@ -176,7 +177,7 @@ function test(mail, name, car, price) {
                 minute: date.getMinutes(),
             }
             parkedDate[x] = time
-            console.log(data)
+
             const patchData = {
                 customer: data.customer,
                 name: data.name,
@@ -186,7 +187,6 @@ function test(mail, name, car, price) {
                 slot: data.slot,
                 date: parkedDate,
             }
-            console.log(patchData)
 
             fetch(`http://localhost:7070/parking/bookslot/${id}`, {
                 headers: {
@@ -196,8 +196,9 @@ function test(mail, name, car, price) {
                 method: 'PATCH',
                 body: JSON.stringify(patchData),
             })
+
             // for receipt
-            var raw = {
+            const raw = {
                 name: name,
                 email: mail,
                 car: car,
@@ -206,15 +207,19 @@ function test(mail, name, car, price) {
                 slot: data.slot[x],
                 date: parkedDate[x],
             }
-            console.log(raw)
-            var requestOptions = {
+            var myHeaders = new Headers()
+            myHeaders.append('Content-Type', 'application/json')
+            const requestOptions = {
                 method: 'PATCH',
                 headers: myHeaders,
                 body: JSON.stringify(raw),
                 redirect: 'follow',
             }
-            fetch(`http://localhost:7070/parking/receipt`, requestOptions)
-            location.reload()
+            fetch(`http://localhost:7070/parking/receipt`, requestOptions).then(
+                (data) => {
+                    location.reload()
+                }
+            )
         })
     // })
 }
@@ -302,9 +307,6 @@ function td_fun1(mail, name, car, price, status, slot) {
 
 function td_fun2(number) {
     let td = document.createElement('div')
-
-    // x = document.getElementById(`${car}`);
-
     td.innerHTML = `
             
             `

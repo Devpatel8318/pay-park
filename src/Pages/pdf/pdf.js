@@ -18,9 +18,12 @@ window.onload = function () {
 
     document.getElementById('time').innerHTML = `${time}<br>${date}`
 
-    fetch(`${api}/receipt/1`)
+    fetch(`http://localhost:7070/parking/receipt/view`)
         .then((res) => res.json())
         .then((data) => {
+            console.log('====================================')
+            console.log(data)
+            console.log('====================================')
             document.getElementById('name').innerText = data.name
             document.getElementById('pname').innerText = data.pname
             document.getElementById('mail').innerText = data.email

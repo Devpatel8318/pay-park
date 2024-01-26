@@ -96,6 +96,7 @@ router.patch('/bookslot/:id', async (ctx) => {
 })
 
 router.patch('/receipt', async (ctx) => {
+    console.log(ctx.request.body)
     const { name, email, car, amount, pname, slot, date } = ctx.request.body
     const updatedData = { name, email, car, amount, pname, slot, date }
 
@@ -108,6 +109,12 @@ router.patch('/receipt', async (ctx) => {
     }
 
     ctx.body = { message: 'ok' }
+})
+
+router.get('/receipt/view', async (ctx) => {
+    const response = await db.collection('receipt').findOne()
+    console.log(response)
+    ctx.body = response
 })
 
 // // Get Single parking
