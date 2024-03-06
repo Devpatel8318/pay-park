@@ -19,10 +19,11 @@
     margin-top: 5px;
 }
 
+
 #panel {
     background-color: rgb(237, 118, 118);
     z-index: 5;
-    /* height: 80vh; */
+    /* max-height: 80vh; */
     width: 20vw;
     color: black;
     position: fixed;
@@ -31,6 +32,36 @@
     border-radius: 20px;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    display: none;
+}
+
+.panel2 {
+    /* background-color: rgb(237, 118, 118); */
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    /* z-index: -1; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    visibility: hidden;
+}
+
+.panelMember {
+    /* height: 60%; */
+    width: 25%;
+    background-color: rgb(237, 118, 118);
+    z-index: 6;
+    visibility: visible;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+}
+
+.panel-form {
+    margin: 5vh 0;
 }
 
 .no {
@@ -68,9 +99,9 @@ a:active {
 #nameOf,
 #id {
     color: white;
-    font-size: 30px;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-    margin-top: 20px;
+    /* font-size: 30px; */
+    /* font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif; */
+    /* margin-top: 20px; */
 }
 
 .button {
@@ -97,6 +128,11 @@ a:active {
     /* bottom: 0px; */
     /* margin-bottom: 10000px; */
     margin: 0 15px 20px 15px;
+}
+
+.panel-form-items {
+    /* @apply w-full */
+    /* width: 100%; */
 }
 
 #para {
@@ -126,13 +162,16 @@ a:active {
 
 
 .autocomplete-container {
-    padding-left: 10%;
+    /* padding-left: 10%; */
     position: absolute;
     top: 10px;
     left: 50%;
     transform: translate(-50%);
     z-index: 5;
     width: 50%;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 6px;
 }
 
 .input-container {
@@ -211,14 +250,8 @@ a:active {
 
 
 
-
-
-
-
-
-
 .nearestt {
-    position: absolute;
+    /* position: absolute; */
     /* top:100px; 
     left: 20px;*/
     background-color: white;
